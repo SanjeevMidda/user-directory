@@ -85,7 +85,7 @@ function App() {
           value={userInput}
           onChange={(e) => saveUserInput(e)}
         />
-        {filteredUser
+        {filteredUser.length > 0
           ? filteredUser.map((user: any) => {
               return (
                 <div className="userContainer" key={user.id}>
