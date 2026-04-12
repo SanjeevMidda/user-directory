@@ -28,9 +28,13 @@ function App() {
 
         let data = await response.json();
         console.log(data);
-      } catch (error: any) {
-        if (error.name === "AbortError") return;
-        console.error(error);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          if (error.name === "Abort Error") return;
+          console.error(error.message);
+        } else {
+          console.error(`Unknown error: ${error}`);
+        }
       }
     };
 
