@@ -63,6 +63,15 @@ function App() {
     <div className="App">
       {status === "loading" && <p>Loading...</p>}
       {status === "error" && <p>Error loading data</p>}
+      {status === "success" &&
+        userData.map((user) => {
+          return (
+            <>
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+            </>
+          );
+        })}
     </div>
   );
 }
