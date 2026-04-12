@@ -58,8 +58,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {}, [userData]);
-
   // function to save user input
   const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
