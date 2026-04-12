@@ -3,20 +3,26 @@ import "./index.css";
 import { request } from "http";
 
 function App() {
-  // fetch data from API
-  // store data from request in state
+  // DONE - fetch data from API
+  // DONE - store data from request in state
+  // set up loading state
   // display key user information
   // set up searching/filtering
   // handle loading and error states
 
   // store user data
   const [userData, setUserData] = useState([]);
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   // fetch data from API
   useEffect(() => {
     const controller = new AbortController();
 
     const getUsers = async () => {
+      setStatus("loading");
+
       try {
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/users",
@@ -31,10 +37,12 @@ function App() {
 
         const data = await response.json();
         setUserData(data);
+        setStatus("success");
       } catch (error: unknown) {
         if (error instanceof Error) {
           if (error.name === "AbortError") return;
           console.error(error.message);
+          setStatus("error");
         } else {
           console.error("Unknown error:", error);
         }
@@ -51,7 +59,13 @@ function App() {
   useEffect(() => {
     console.log(userData);
   }, [userData]);
-  return <div className="App"></div>;
+
+  return (
+    <div className="App">
+      {status === "loading" && <p>Loading...</p>}
+      {status === "error" && <p>Error loading data</p>}
+    </div>
+  );
 }
 
 export default App;
