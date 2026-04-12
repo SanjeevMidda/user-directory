@@ -68,6 +68,7 @@ function App() {
       {status === "error" && <p>Error loading data</p>}
 
       <div className="allUserContainer">
+        <input type="text" />
         {status === "success" &&
           userData.map((user) => {
             return (
@@ -78,6 +79,7 @@ function App() {
               </div>
             );
           })}
+        <div className="emptyContainer"></div>
       </div>
     </div>
   );
