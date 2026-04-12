@@ -8,7 +8,7 @@ function App() {
   // DONE - display key user information
   // DONE - create TS interface for API data
   // state typed correctly
-  // set up searching/filtering
+  // DONE - set up searching/filtering
   // handle loading and error states
 
   // store user data
@@ -58,12 +58,10 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+  useEffect(() => {}, [userData]);
 
   // function to save user input
-  const saveUserInput = (e: any) => {
+  const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
 
@@ -85,17 +83,17 @@ function App() {
           value={userInput}
           onChange={(e) => saveUserInput(e)}
         />
-        {filteredUser.length > 0
-          ? filteredUser.map((user: any) => {
-              return (
-                <div className="userContainer" key={user.id}>
-                  <p>{user.name}</p>
-                  <p>{user.email}</p>
-                  <p>{user.company.name}</p>
-                </div>
-              );
-            })
-          : "No users found"}
+
+        {status === "success" &&
+          filteredUser.map((user) => (
+            <div className="userContainer" key={user.id}>
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+              <p>{user.company?.name}</p>
+            </div>
+          ))}
+
+        {userInput && filteredUser.length === 0 && <p>No users found</p>}
 
         <div className="emptyContainer"></div>
       </div>
