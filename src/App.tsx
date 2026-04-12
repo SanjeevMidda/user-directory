@@ -10,23 +10,35 @@ function App() {
 
   // fetch data from API
 
-  let getUsers = async () => {
-    try {
-      let request = await fetch("https://jsonplaceholder.typicode.com/userss");
-
-      if (!request.ok) {
-        throw new Error(`Something went wrong! HTTP error: ${request.status}`);
-      }
-
-      let response = await request.json();
-      console.log(response);
-    } catch (error) {
-      console.error(`${error}`);
-    }
-  };
-
   useEffect(() => {
+    const controller = new AbortController();
+
+    const getUsers = async () => {
+      try {
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/users",
+          { signal: controller.signal }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Something went wrong! HTTP error: ${response.status}`
+          );
+        }
+
+        let data = await response.json();
+        console.log(data);
+      } catch (error: any) {
+        if (error.name === "AbortError") return;
+        console.error(error);
+      }
+    };
+
     getUsers();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return <div className="App"></div>;
