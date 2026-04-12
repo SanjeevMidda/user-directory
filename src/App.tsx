@@ -65,8 +65,18 @@ function App() {
   // function to save user input
   const saveUserInput = (e: any) => {
     setUserInput(e.target.value);
-    console.log(userInput);
   };
+
+  const filterUsers = () => {
+    const filteredUser = userData.filter((user) =>
+      user.name.toLowerCase().includes(userInput.toLowerCase())
+    );
+    console.log(filteredUser);
+  };
+
+  useEffect(() => {
+    filterUsers();
+  }, [userInput]);
 
   return (
     <div className="App">
