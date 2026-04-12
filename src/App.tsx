@@ -24,10 +24,12 @@ function App() {
       {status === "error" && <p>Error loading data</p>}
 
       <div className="allUserContainer">
+        <label htmlFor="search">Search users</label>
         <input
           type="text"
+          id="search"
           value={userInput}
-          onChange={(e) => saveUserInput(e)}
+          onChange={saveUserInput}
         />
 
         {status === "success" &&
