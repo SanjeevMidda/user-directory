@@ -62,13 +62,23 @@ function App() {
     console.log(userData);
   }, [userData]);
 
+  // function to save user input
+  const saveUserInput = (e: any) => {
+    setUserInput(e.target.value);
+    console.log(userInput);
+  };
+
   return (
     <div className="App">
       {status === "loading" && <p>Loading...</p>}
       {status === "error" && <p>Error loading data</p>}
 
       <div className="allUserContainer">
-        <input type="text" />
+        <input
+          type="text"
+          value={userInput}
+          onChange={(e) => saveUserInput(e)}
+        />
         {status === "success" &&
           userData.map((user) => {
             return (
