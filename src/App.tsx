@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import { request } from "http";
-
+import type { User } from "./types/user";
 function App() {
   // DONE - fetch data from API
   // DONE - store data from request in state
-  // set up loading state
+  // DONE - set up loading state
   // display key user information
   // set up searching/filtering
   // handle loading and error states
 
   // store user data
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState<User[]>([]);
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
