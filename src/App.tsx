@@ -5,7 +5,8 @@ function App() {
   // DONE - fetch data from API
   // DONE - store data from request in state
   // DONE - set up loading state
-  // display key user information
+  // DONE - display key user information
+  // create TS interface for API data
   // set up searching/filtering
   // handle loading and error states
 
@@ -68,7 +69,7 @@ function App() {
         {status === "success" &&
           userData.map((user) => {
             return (
-              <div className="userContainer">
+              <div className="userContainer" key={user.id}>
                 <p>{user.name}</p>
                 <p>{user.email}</p>
                 <p>{user.company.name}</p>
