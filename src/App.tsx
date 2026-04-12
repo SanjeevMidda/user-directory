@@ -6,7 +6,8 @@ function App() {
   // DONE - store data from request in state
   // DONE - set up loading state
   // DONE - display key user information
-  // create TS interface for API data
+  // DONE - create TS interface for API data
+  // state typed correctly
   // set up searching/filtering
   // handle loading and error states
 
@@ -15,6 +16,7 @@ function App() {
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading"
   );
+  const [userInput, setUserInput] = useState("");
 
   // fetch data from API
   useEffect(() => {
