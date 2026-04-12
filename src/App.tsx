@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import { request } from "http";
 
@@ -9,8 +9,10 @@ function App() {
   // set up searching/filtering
   // handle loading and error states
 
-  // fetch data from API
+  // store user data
+  const [userData, setUserData] = useState([]);
 
+  // fetch data from API
   useEffect(() => {
     const controller = new AbortController();
 
@@ -28,13 +30,13 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data);
+        setUserData(data);
       } catch (error: unknown) {
         if (error instanceof Error) {
           if (error.name === "AbortError") return;
           console.error(error.message);
         } else {
-          console.error(`Unknown error: ${error}`);
+          console.error("Unknown error:", error);
         }
       }
     };
@@ -46,6 +48,9 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
   return <div className="App"></div>;
 }
 
