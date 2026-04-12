@@ -10,9 +10,13 @@ function App() {
   // fetch data from API
 
   let getUsers = async () => {
-    let request = await fetch("https://jsonplaceholder.typicode.com/users");
-    let response = await request.json();
-    console.log(response);
+    try {
+      let request = await fetch("https://jsonplaceholder.typicode.com/users");
+      let response = await request.json();
+      console.log(response);
+    } catch {
+      console.log("Error");
+    }
   };
 
   useEffect(() => {
