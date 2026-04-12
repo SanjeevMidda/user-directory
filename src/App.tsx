@@ -69,6 +69,7 @@ function App() {
             <>
               <p>{user.name}</p>
               <p>{user.email}</p>
+              <p>{user.company.name}</p>
             </>
           );
         })}
