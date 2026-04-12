@@ -15,7 +15,9 @@ function App() {
     console.log(response);
   };
 
-  getUsers();
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return <div className="App"></div>;
 }
