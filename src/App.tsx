@@ -13,7 +13,7 @@ function App() {
 
   // filter users
   const filteredUser = useMemo(() => {
-    userData.filter((user) =>
+    return userData.filter((user) =>
       (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
     );
   }, [userData, userInput]);
