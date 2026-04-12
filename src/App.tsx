@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./index.css";
+import { request } from "http";
 
 function App() {
   // fetch data from API
@@ -11,11 +12,16 @@ function App() {
 
   let getUsers = async () => {
     try {
-      let request = await fetch("https://jsonplaceholder.typicode.com/users");
+      let request = await fetch("https://jsonplaceholder.typicode.com/userss");
+
+      if (!request.ok) {
+        throw new Error(`Something went wrong! HTTP error: ${request.status}`);
+      }
+
       let response = await request.json();
       console.log(response);
-    } catch {
-      console.log("Error");
+    } catch (error) {
+      console.error(`${error}`);
     }
   };
 
