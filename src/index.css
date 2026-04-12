@@ -11,3 +11,18 @@
   align-items: center;
   height: 100dvh;
 }
+
+.allUserContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  width: 70dvw;
+  height: 40dvh;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -63,16 +63,19 @@ function App() {
     <div className="App">
       {status === "loading" && <p>Loading...</p>}
       {status === "error" && <p>Error loading data</p>}
-      {status === "success" &&
-        userData.map((user) => {
-          return (
-            <>
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.company.name}</p>
-            </>
-          );
-        })}
+
+      <div className="allUserContainer">
+        {status === "success" &&
+          userData.map((user) => {
+            return (
+              <div className="userContainer">
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+                <p>{user.company.name}</p>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }
