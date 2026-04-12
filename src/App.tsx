@@ -1,5 +1,5 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useUsers } from "./hooks/useUsers";
 
 function App() {
@@ -12,9 +12,11 @@ function App() {
   };
 
   // filter users
-  const filteredUser = userData.filter((user) =>
-    (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
-  );
+  const filteredUser = useMemo(() => {
+    userData.filter((user) =>
+      (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
+    );
+  }, [userData, userInput]);
 
   return (
     <div className="App">
