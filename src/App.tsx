@@ -67,16 +67,12 @@ function App() {
     setUserInput(e.target.value);
   };
 
-  const filterUsers = () => {
-    const filteredUser = userData.filter((user) =>
-      user.name.toLowerCase().includes(userInput.toLowerCase())
-    );
-    console.log(filteredUser);
-  };
+  // filter users
+  const filteredUser = userData.filter((user) =>
+    user.name.toLowerCase().includes(userInput.toLowerCase())
+  );
 
-  useEffect(() => {
-    filterUsers();
-  }, [userInput]);
+  console.log(filteredUser);
 
   return (
     <div className="App">
@@ -89,16 +85,18 @@ function App() {
           value={userInput}
           onChange={(e) => saveUserInput(e)}
         />
-        {status === "success" &&
-          userData.map((user) => {
-            return (
-              <div className="userContainer" key={user.id}>
-                <p>{user.name}</p>
-                <p>{user.email}</p>
-                <p>{user.company.name}</p>
-              </div>
-            );
-          })}
+        {filteredUser
+          ? filteredUser.map((user: any) => {
+              return (
+                <div className="userContainer" key={user.id}>
+                  <p>{user.name}</p>
+                  <p>{user.email}</p>
+                  <p>{user.company.name}</p>
+                </div>
+              );
+            })
+          : "No users found"}
+
         <div className="emptyContainer"></div>
       </div>
     </div>
