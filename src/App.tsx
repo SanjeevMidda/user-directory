@@ -11,9 +11,9 @@ function App() {
 
   // store user data
   const [userData, setUserData] = useState<User[]>([]);
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"loading" | "success" | "error">(
+    "loading"
+  );
 
   // fetch data from API
   useEffect(() => {
