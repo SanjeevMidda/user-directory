@@ -4,7 +4,7 @@ import { useUsers } from "./hooks/useUsers";
 
 function App() {
   const [userInput, setUserInput] = useState<string>("");
-  const { userData, status } = useUsers();
+  const { userData, status } = useUsers(userInput);
 
   // function to save user input
   const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
