@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
+import useDebounce from "./useDebounce";
 import type { User } from "../types/user";
 
-export const useUsers = () => {
+export const useUsers = (search: string) => {
   // store user data
   const [userData, setUserData] = useState<User[]>([]);
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading"
   );
 
+  const debouncedSearch = useDebounce(search, 400);
+
   // fetch data from API
   useEffect(() => {
+    if (!debouncedSearch) return;
+
     const controller = new AbortController();
 
     const getUsers = async () => {
@@ -46,7 +51,7 @@ export const useUsers = () => {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [debouncedSearch]);
 
   return { userData, status };
 };
