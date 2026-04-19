@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { useUsers } from "./hooks/useUsers";
 
 function App() {
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState<string>("");
   const { userData, status } = useUsers();
 
   // function to save user input
@@ -24,12 +24,12 @@ function App() {
       {status === "error" && <p>Error loading data</p>}
 
       <div className="allUserContainer">
-        <label htmlFor="search">Search users</label>
         <input
           type="text"
           id="search"
           value={userInput}
           onChange={saveUserInput}
+          aria-label="search-input"
         />
 
         {status === "success" &&
