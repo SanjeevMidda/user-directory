@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useDebounce from "./useDebounce";
 import type { User } from "../types/user";
 
 export const useUsers = (search: string) => {
@@ -9,11 +8,9 @@ export const useUsers = (search: string) => {
     "loading"
   );
 
-  const debouncedSearch = useDebounce(search, 400);
-
   // fetch data from API
   useEffect(() => {
-    if (!debouncedSearch) return;
+    // if (!debouncedSearch) return;
 
     const controller = new AbortController();
 
@@ -51,7 +48,7 @@ export const useUsers = (search: string) => {
     return () => {
       controller.abort();
     };
-  }, [debouncedSearch]);
+  }, []);
 
   return { userData, status };
 };
