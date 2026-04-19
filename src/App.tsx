@@ -1,10 +1,12 @@
 import "./index.css";
 import { useState, useMemo } from "react";
 import { useUsers } from "./hooks/useUsers";
+import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const [userInput, setUserInput] = useState<string>("");
-  const { userData, status } = useUsers(userInput);
+  const debouncedSearch = useDebounce(userInput, 500);
+  const { userData, status } = useUsers(debouncedSearch);
 
   // function to save user input
   const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +18,7 @@ function App() {
     return userData.filter((user) =>
       (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
     );
-  }, [userData, userInput]);
+  }, [userData, debouncedSearch]);
 
   return (
     <div className="App">

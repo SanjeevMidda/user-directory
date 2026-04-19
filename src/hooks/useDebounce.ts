@@ -8,6 +8,7 @@ const useDebounce = <T>(value: T, delay: number = 500): T => {
       setDebouncedValue(value);
     }, delay);
 
+    console.log("typing", value);
     return () => {
       clearTimeout(handler);
     };
