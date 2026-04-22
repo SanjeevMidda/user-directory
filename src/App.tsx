@@ -43,7 +43,9 @@ function App() {
             </div>
           ))}
 
-        {userInput && filteredUser.length === 0 && <p>No users found</p>}
+        {status === "success" &&
+          debouncedSearch &&
+          filteredUser.length === 0 && <p>No users found</p>}
 
         <div className="emptyContainer"></div>
       </div>
