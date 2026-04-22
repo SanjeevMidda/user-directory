@@ -11,12 +11,9 @@ function App() {
     setUserInput(e.target.value);
   };
 
-  // filter users
-  const filteredUser = useMemo(() => {
-    return userData.filter((user) =>
-      (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
-    );
-  }, [userData, userInput]);
+  const filteredUser = userData.filter((user) =>
+    (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
+  );
 
   return (
     <div className="App">
