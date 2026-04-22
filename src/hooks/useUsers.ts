@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { User } from "../types/user";
 
-export const useUsers = (search: string) => {
+export const useUsers = () => {
   // store user data
   const [userData, setUserData] = useState<User[]>([]);
   const [status, setStatus] = useState<"loading" | "success" | "error">(

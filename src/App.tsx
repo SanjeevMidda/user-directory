@@ -1,12 +1,10 @@
 import "./index.css";
 import { useState, useMemo } from "react";
 import { useUsers } from "./hooks/useUsers";
-import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const [userInput, setUserInput] = useState<string>("");
-  const debouncedSearch = useDebounce(userInput, 500);
-  const { userData, status } = useUsers(debouncedSearch);
+  const { userData, status } = useUsers();
 
   // function to save user input
   const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,9 +14,9 @@ function App() {
   // filter users
   const filteredUser = useMemo(() => {
     return userData.filter((user) =>
-      (user?.name ?? "").toLowerCase().includes(debouncedSearch.toLowerCase())
+      (user?.name ?? "").toLowerCase().includes(userInput.toLowerCase())
     );
-  }, [userData, debouncedSearch]);
+  }, [userData, userInput]);
 
   return (
     <div className="App">
@@ -43,9 +41,9 @@ function App() {
             </div>
           ))}
 
-        {status === "success" &&
-          debouncedSearch &&
-          filteredUser.length === 0 && <p>No users found</p>}
+        {status === "success" && userInput && filteredUser.length === 0 && (
+          <p>No users found</p>
+        )}
 
         <div className="emptyContainer"></div>
       </div>
