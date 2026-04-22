@@ -10,8 +10,6 @@ export const useUsers = (search: string) => {
 
   // fetch data from API
   useEffect(() => {
-    // if (!debouncedSearch) return;
-
     const controller = new AbortController();
 
     const getUsers = async () => {
@@ -29,7 +27,7 @@ export const useUsers = (search: string) => {
           );
         }
 
-        const data = await response.json();
+        const data: User[] = await response.json();
         setUserData(data);
         setStatus("success");
       } catch (error: unknown) {
