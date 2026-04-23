@@ -1,12 +1,11 @@
 import "./index.css";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useUsers } from "./hooks/useUsers";
 
 function App() {
   const [userInput, setUserInput] = useState<string>("");
   const { userData, status } = useUsers();
 
-  // function to save user input
   const saveUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
   };
@@ -41,8 +40,6 @@ function App() {
         {status === "success" && userInput && filteredUser.length === 0 && (
           <p>No users found</p>
         )}
-
-        <div className="emptyContainer"></div>
       </div>
     </div>
   );

@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import type { User } from "../types/user";
 
 export const useUsers = () => {
-  // store user data
   const [userData, setUserData] = useState<User[]>([]);
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading"
   );
 
-  // fetch data from API
   useEffect(() => {
     const controller = new AbortController();
 
